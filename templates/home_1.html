@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlanIT - A Planner for All</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/organizer.png') }}">
+    <style>
+      .hero {
+        background-image: url("{{ url_for('static', filename='Images/home.png') }}");
+        /* background-size: cover; */
+        /* background-position: center; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="navbar">
+        <nav class="nav">
+          <div>
+              <ul>
+                  <li><a href="{{ url_for('home_1') }}"><button class="button">Home</button></a></li>
+                  <li><a href="{{ url_for('index') }}"><button class="button">Generate</button></a></li>
+                  <li><a href="{{ url_for('calender') }}"><button class="button">Calendar</button></a></li>
+                  <li><a href="{{ url_for('notes') }}"><button class="button">Notes</button></a></li>
+              </ul>
+          </div>
+          <div>
+              <a href="{{ url_for('home') }}"><button class="btn btn-red-sn">Sign Out</button></a>
+          </div>
+      </nav>
+      
+    </div>
+      <div class="box"></div>
+      <div class="hero">
+        <span>A little progress each day adds up to big results.</span>
+        <span>Good things take time.</span>
+        <span>You have goals so big you feel uncomfortable telling small-minded people.</span>
+        <div class="hero-buttons">
+          <!-- <input type="text" placeholder="Email Address" /> -->
+          <!-- <button class="btn btn-red">Get Started &gt;</button> -->
+        </div>
+      </div>
+    </div>
+
+    <section class="first">
+      <div>
+        <span>Don't be the same, be better</span>
+        <span>You have goals so big you feel uncomfortable telling small-minded people.</span>
+      </div>
+      <div class="secImg">
+        <img src="{{ url_for('static', filename='Images/image1.jpeg') }}" alt="Image 1">
+      </div>
+    </section>
+
+    <section class="first second">
+      <div class="secImg">
+        <img src="{{ url_for('static', filename='Images/image2.webp') }}" alt="Image 2">
+      </div>
+      <div>
+        <span>Be happy...</span>
+        <span>Throw kindness around like confetti.</span>
+      </div>
+    </section>
+
+    <section class="first third">
+      <div>
+        <span>Laugh out loud</span>
+        <span>How to be happy: decide every morning that you are in a good mood.</span>
+      </div>
+      <div class="secImg">
+        <img src="{{ url_for('static', filename='Images/image3.jpg') }}" alt="Image 3">
+      </div>
+    </section>
+
+    <section class="first second">
+      <div class="secImg">
+        <img src="{{ url_for('static', filename='Images/images4.jpeg') }}" alt="Image 4">
+      </div>
+      <div>
+        <span>Collect moments, not things</span>
+        <span>Don't look back; you're not going that way.</span>
+      </div>
+    </section>
+
+    <div class="seperation"></div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="questions">
+        Questions? Call 000-800-919-1694
+      </div>
+      <div class="footer">
+        <div class="footer-item"> 
+          <a href="faq">Investor Relations</a>
+          <a href="faq">Jobs</a>
+          <a href="faq">Ways to Watch</a>
+          <a href="faq">Terms of Use</a>
+        </div>
+        <div class="footer-item"> 
+          <a href="faq">Help Centre</a>
+          <a href="faq">Account</a>
+          <a href="faq">Speed Test</a>
+          <a href="faq">Legal Notices</a>
+        </div>
+        <div class="footer-item">
+          <a href="faq">Media Centre</a>
+          <a href="faq">Privacy</a>
+          <a href="faq">Cookie Preferences</a> 
+          <a href="faq">Corporate</a>
+        </div>
+        <div class="footer-item">
+          <a href="faq">Contact Us</a>
+          <a href="faq">Speed Test</a> 
+          <a href="faq">Legal Notices</a> 
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

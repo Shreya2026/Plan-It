@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='plan.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/organizer.png') }}">
+</head>
+<body>
+    <div class="navbar">
+        <nav class="nav">
+          <div>
+              <ul>
+                <li><a href="{{ url_for('home_1') }}"><button style="position: absolute; top: 31px; left: 80px;" class="button">Home</button></a></li>
+                <li><a href="{{ url_for('index') }}"><button class="button">Generate</button></a></li>
+                <li><a href="{{ url_for('calender') }}"><button class="button">Calendar</button></a></li>
+                <li><a href="{{ url_for('notes') }}"><button class="button">Notes</button></a></li>
+              </ul>
+          </div>
+          <div>
+            <a href="{{ url_for('home') }}"><button class="btn btn-red-sn">Sign Out</button></a>
+          </div>
+      </nav>
+      
+    </div>
+    <h1>Planner</h1>
+    <form id="planner-form" action="/update_planner" method="post">
+        {% if planner_messages %}
+            <ul >
+                {% for message in planner_messages %}
+                    <li style=" margin-bottom: 10px;
+                    padding: 5px 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;" >{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <ul id="planner-list" >
+                {% for item in planner %}
+                    <li style=" margin-bottom: 10px;
+                    padding: 5px 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;">{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <button style="margin:10px 30px;" type="button" class="Edit-btn" id="edit-button">Edit</button>
+        <input type="submit" value="Save" class="Edit-btn" id="save-button" style="display:none;">
+    </form>
+
+    <script>
+        document.getElementById('edit-button').addEventListener('click', function() {
+            const listItems = document.querySelectorAll('#planner-list li');
+            listItems.forEach((li, index) => {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'planner_item_' + index;
+                input.value = li.textContent;
+                li.textContent = '';
+                li.appendChild(input);
+            });
+            document.getElementById('save-button').style.display = 'inline';
+        });
+    </script>
+</body>
+</html>

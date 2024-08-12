@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan It</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/organizer.png') }}">
+</head>
+<body>
+    <div class="navbar">
+        <nav class="nav">
+          <div>
+              <ul>
+                <li><a href="{{ url_for('home_1') }}"><button class="button">Home</button></a></li>
+                <li><a href="{{ url_for('index') }}"><button class="button">Generate</button></a></li>
+                <li><a href="{{ url_for('calender') }}"><button class="button">Calendar</button></a></li>
+                <li><a href="{{ url_for('notes') }}"><button class="button">Notes</button></a></li>
+              </ul>
+          </div>
+          <div>
+            <a href="{{ url_for('home') }}"><button class="btn btn-red-sn">Sign Out</button></a>
+          </div>
+      </nav>
+      
+    </div>
+    <h1>Welcome to the Task Planner</h1>
+    <a href="{{ url_for('view_history') }}"><button class="hist_btn">View Planner History</button></a>
+    <form action="/planner" method="post">
+        <label for="tasks_input">What tasks would you like to accomplish today?</label><br>
+        <input type="text" id="tasks_input" name="tasks_input"><br>
+
+        <label for="important_task">Which task is the most important?</label><br>
+        <input type="text" id="important_task" name="important_task"><br>
+
+        <div id="task_times">
+            <!-- Task time inputs will be added dynamically using JavaScript -->
+        </div>
+
+        <label for="start_time">When would you like to start your first task?</label><br>
+        <input type="text" id="start_time" name="start_time"><br>
+
+        <input type="submit" value="Generate Planner">
+    </form>
+
+    <script>
+        // JavaScript for adding dynamic task time inputs
+        function addTaskTimeInput() {
+            const tasksInput = document.getElementById('tasks_input');
+            const tasks = tasksInput.value.split(/,\s*|\s+and\s+/);
+            const taskTimesDiv = document.getElementById('task_times');
+            taskTimesDiv.innerHTML = '';
+
+            tasks.forEach(task => {
+                const label = document.createElement('label');
+                label.textContent = `Approximately how much time will ${task.trim()} take? (Please enter in hours, e.g., '1.5' for 1 hour and 30 minutes): `;
+                taskTimesDiv.appendChild(label);
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `task_${task.trim()}_time`;
+                taskTimesDiv.appendChild(input);
+
+                taskTimesDiv.appendChild(document.createElement('br'));
+            });
+        }
+
+        document.getElementById('tasks_input').addEventListener('input', addTaskTimeInput);
+        addTaskTimeInput();  // Call the function initially
+    </script>
+</body>
+</html>

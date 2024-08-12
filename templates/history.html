@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='plan.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Images/organizer.png') }}">
+</head>
+<body>
+    <div class="navbar">
+        <nav class="nav">
+          <div>
+              <ul>
+                <li><a href="{{ url_for('home_1') }}"><button style="position: absolute; top: 31px; left: 80px;" class="button">Home</button></a></li>
+                <li><a href="{{ url_for('index') }}"><button class="button">Generate</button></a></li>
+                <li><a href="{{ url_for('calender') }}"><button class="button">Calendar</button></a></li>
+                <li><a href="{{ url_for('notes') }}"><button class="button">Notes</button></a></li>
+              </ul>
+          </div>
+          <div>
+            <a href="{{ url_for('home') }}"><button class="btn btn-red-sn">Sign Out</button></a>
+          </div>
+      </nav>
+      
+    </div>
+    <h1>Planner History</h1>
+    <ul>
+        {% for entry in history %}
+            <li style=" margin-bottom: 10px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;">
+                <strong>Date: {{ entry['date'] }}</strong><br>
+                Tasks: {{ entry['tasks_input'] }}<br>
+                Important Task: {{ entry['important_task'] }}<br>
+                Start Time: {{ entry['start_time'] }}<br>
+                Task Times: {{ entry['task_times'] }}<br>
+                Planner:
+                <ul>
+                    {% for item in entry['planner'] %}
+                        <li style=" margin-bottom: 10px;
+                        padding: 5px 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;">{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
